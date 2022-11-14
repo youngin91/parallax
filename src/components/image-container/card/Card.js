@@ -5,18 +5,18 @@ function Card({ src, link, profile, person, id, portfolio }) {
   let open = React.useRef({
     expand: "",
     isPC: false,
-    pointer:""
+    pointer:"none"
   });
   const [update,setUpdate] = React.useState()
   function expand(event) {
     if(open.current.isPC){
       setUpdate("")
       open.current = { ...open, expand: "expand", pointer: "auto"};
-      console.log(open.current.isPC);
     }
     
   }
   React.useEffect(() => {
+    
     if(window.innerWidth >= 1000){
       open.current = {...open, pointer: "none", isPC: true};
     }else{
