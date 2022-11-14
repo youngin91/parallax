@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { RotatingSquare } from "react-loader-spinner";
-import {  Parallax } from "react-scroll-parallax";
+import { Parallax } from "react-scroll-parallax";
 import "./image-container.css";
 
 function ImageContainer({ res }) {
@@ -24,11 +24,11 @@ function ImageContainer({ res }) {
             speed = slow;
           }
           //handle mobile window sizes
-          let imageSize ;
-          if(window.innerWidth > 1000){
-            imageSize = item.urls.full
-          }else{
-            imageSize = item.urls.regular
+          let imageSize;
+          if (window.innerWidth > 1000) {
+            imageSize = item.urls.full;
+          } else {
+            imageSize = item.urls.regular;
           }
           return (
             <Suspense fallback={<RotatingSquare key={item.id} />}>
@@ -36,7 +36,7 @@ function ImageContainer({ res }) {
                 speed={speed}
                 translateX={[`${-360}px`, `${360}px`]}
                 translateY={[`${negativeNumber}px`, `${positiveNumber}px`]}
-                rotateY={[-360,360]}
+                rotateY={[-360, 360]}
                 key={item.id}
               >
                 <Card

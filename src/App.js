@@ -17,7 +17,6 @@ function App() {
       }
     }
   ]);
-  const [imageSize, setImageSize] = React.useState("regular");
 
   const handleChange = (event) => {
     setString(event.target.value);
@@ -38,20 +37,8 @@ function App() {
     }
   }
 
-  function regular() {
-    setImageSize("regular");
-  }
-  function full() {
-    setImageSize("full");
-  }
-  function raw() {
-    setImageSize("raw");
-    console.log(imageSize);
-  }
-
   return (
     <div className="app">
-    
       <Banner
         string={string}
         handleChange={handleChange}
@@ -59,7 +46,7 @@ function App() {
         res={randomImage}
       />
       <ParallaxProvider>
-        <ImageContainer string={string} res={data} size={imageSize} />
+        <ImageContainer string={string} res={data} />
       </ParallaxProvider>
     </div>
   );
