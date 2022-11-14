@@ -2,22 +2,33 @@ import React from "react";
 import "./card.css";
 
 function Card({ src, link, profile, person, id, portfolio }) {
-  const [open, setOpen] = React.useState({
+  let open = React.useRef({
     expand: "",
-    isPC: 0,
+    isPC: false,
     pointer:""
   });
+  const [update,setUpdate] = React.useState()
   function expand(event) {
-    setOpen({ ...open, expand: "expand", pointer: "auto"});
+    if(open.current.isPC){
+      setUpdate("")
+      open.current = { ...open, expand: "expand", pointer: "auto"};
+      console.log(open.current.isPC);
+    }
+    
   }
-  if(window.innerWidth >= 1000){
-    setOpen({ ...open, pointer: "none"})
-  }
+  React.useEffect(() => {
+    if(window.innerWidth >= 1000){
+      open.current = {...open, pointer: "none", isPC: true};
+    }else{
+      open.current = {...open, pointer: "auto", isPC: false};
+    }
+  },[update])
+  
   
   return (
     <div className="card">
       <div
-        className={`card__profile ${open.expand}`}
+        className={`card__profile ${open.current.expand}`}
         onClick={expand}
       >
       <h4>{person}: </h4>
@@ -26,7 +37,7 @@ function Card({ src, link, profile, person, id, portfolio }) {
           target="_blank"
           rel="noreferrer"
           className="card__profile-link"
-          style={{pointerEvents: open.pointer}}
+          style={{pointerEvents: open.current.pointer}}
         >
           <h4>profile</h4>
         </a>
@@ -35,7 +46,7 @@ function Card({ src, link, profile, person, id, portfolio }) {
           className="card__portfolio-link"
           rel="noreferrer"
           target="_blank"
-          style={{pointerEvents: open.pointer}}
+          style={{pointerEvents: open.current.pointer}}
         >
           <h4>portfolio</h4>
         </a>
