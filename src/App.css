@@ -1,0 +1,18 @@
+.app{
+  max-width: 100%;
+  background:#2b2a33
+}
+
+.app__size{
+  width: 100%;
+  display:flex;  
+  justify-content:center;  
+  align-content:center;
+}
+.app__size  button{
+  margin:0 auto;
+  padding:.7em;
+}
+.app__size  button:active{
+  background:green;
+}
