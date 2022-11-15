@@ -4,8 +4,8 @@ import "./card.css";
 function Card({ src, link, profile, person, id, portfolio }) {
   let open = React.useRef({
     expand: "",
-    isPC: false,
-    pointer: "none"
+    isPC: true,
+    pointer: "none",
   });
   const [update, setUpdate] = React.useState();
   function expand(event) {
@@ -31,7 +31,7 @@ function Card({ src, link, profile, person, id, portfolio }) {
           target="_blank"
           rel="noreferrer"
           className="card__profile-link"
-          style={{ pointerEvents: open.current.pointer }}
+          style={{ pointerEvents: !open.current.isPC ? "auto" : open.current.pointer }}
         >
           <h4>profile</h4>
         </a>
@@ -40,7 +40,7 @@ function Card({ src, link, profile, person, id, portfolio }) {
           className="card__portfolio-link"
           rel="noreferrer"
           target="_blank"
-          style={{ pointerEvents: open.current.pointer }}
+          style={{ pointerEvents: !open.current.isPC ? "auto" : open.current.pointer }}
         >
           {portfolio !== null && <h4>portfolio</h4>}
         </a>
